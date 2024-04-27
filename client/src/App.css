@@ -1,0 +1,56 @@
+header {
+  height: 6vh;
+}
+body {
+  background: white;
+}
+
+:root {
+  font-family: "Inter", "Arial";
+}
+
+.circle-container{
+  position: absolute;
+  width: 35vw;
+  aspect-ratio: 1/2;
+  overflow:hidden;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  z-index: -100;
+
+}
+
+.circle {
+  width: 70vw;
+  aspect-ratio: 1/1;
+  z-index: -100;
+  border-radius: 50%;
+}
+
+.product-list{
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+@media (min-width: 768px) {
+  .circle{
+    width: 36vw;
+  }
+  .circle-container{
+    width: 18vw;
+  }
+  .product-list{
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+.sombra-iphone {
+  margin-top: -2rem;
+  width: 40%;
+  aspect-ratio: 3/1;
+  z-index: -10;
+  border-radius: 50%;
+  background-color: #c3c3c3;
+}
+
+
