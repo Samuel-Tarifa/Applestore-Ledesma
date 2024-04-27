@@ -13,11 +13,9 @@ CREATE TABLE IF NOT EXISTS
     description TEXT NOT NULL,
     price TEXT NOT NULL,
     category_id INTEGER,
-    color_id INTEGER,
     stock TEXT NOT NULL,
     discount TEXT DEFAULT '0',
     FOREIGN KEY (category_id) REFERENCES categories (id),
-    FOREIGN KEY (color_id) REFERENCES colors (id)
   );
 
 CREATE TABLE IF NOT EXISTS
@@ -34,6 +32,3 @@ CREATE TABLE IF NOT EXISTS
 
 CREATE TABLE IF NOT EXISTS
   categories (id INTEGER PRIMARY KEY, name TEXT NOT NULL);
-
-CREATE TABLE IF NOT EXISTS
-  colors (id INTEGER PRIMARY KEY, name TEXT NOT NULL);
