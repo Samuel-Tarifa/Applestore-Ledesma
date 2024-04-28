@@ -13,7 +13,7 @@ datasource db {
 model Product{
   id String @id @default(uuid())
   name String @unique
-  description String
+  description String?
   price String
   stock Int? @default(1)
   categoryId Int
@@ -21,8 +21,24 @@ model Product{
   image String @default("defaultImage.webp")
   category Category @relation(fields: [categoryId],references: [id])
   iphoneModel IphoneModelOnProduct[]
+  attributes AttributeOnProduct[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Attribute{
+  id Int @id @default(autoincrement())
+  name String @unique
+  products AttributeOnProduct[]
+}
+
+model AttributeOnProduct{
+  product Product @relation(fields: [productId],references: [id])
+  productId String
+  attribute Attribute @relation(fields: [attributeId],references: [id])
+  attributeId Int
+
+  @@id([productId,attributeId])
 }
 
 model IphoneModelOnProduct{
