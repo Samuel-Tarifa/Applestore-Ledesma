@@ -3,5 +3,6 @@ import productController from '../controllers/productController.js'
 const router=Router()
 
 router.get('/',productController.getAll)
+router.post('/create',productController.create)
 
 export default router
