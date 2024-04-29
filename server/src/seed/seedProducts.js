@@ -1,15 +1,42 @@
-import db from '../db.js'
+import db from "../db.js";
 
-const products=[]
+const product = {
+  name: "Cable de carga USB-C to Lighting",
+  price: "3.500",
+  image: "Cable de carga USB-C to Lighting",
+  categoryId: 2,
+};
+const connectionData = {
+  iphoneModel: [ { id: 21 }],
 
-const createProducts=async()=>{
+  attributes: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }],
+};
+
+const createProduct = async () => {
   try {
-    const productsCreated=await db.product.createMany({data:products})
-    console.log('Products created successfully')
-    return productsCreated
-  } catch (error) {
-    console.error(error)
-  }
-}
+    const productCreated = await db.product.create({ data: product });
+    console.log("Products created successfully");
 
-console.log(createProducts)
+    /* await Promise.all(
+      connectionData.iphoneModel.map(async (model) => {
+        await db.iphoneModelOnProduct.create({
+          data: { productId: productCreated.id, iphoneModelId: model.id },
+        });
+      })
+    );
+
+    await Promise.all(
+      connectionData.attributes.map(async (attribute) => {
+        await db.attributeOnProduct.create({
+          data: { productId: productCreated.id, attributeId: attribute.id },
+        });
+      })
+    ); */
+
+    console.log("Products connected successfully");
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+createProduct();
