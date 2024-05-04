@@ -8,7 +8,7 @@ export function useProducts() {
   useEffect(() => {
     getProducts().then((result) => {
       !result.success ? setError(result.error) : setError(null);
-      setProducts(result.drinks);
+      setProducts(result.data);
     });
   }, []);
   return { products, error };

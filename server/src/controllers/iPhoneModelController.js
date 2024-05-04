@@ -3,10 +3,8 @@ import db from "../db.js";
 const iPhoneModelController = {
   getAll: async (req, res) => {
     try {
-      const categories = await db.iphoneModel.findMany({
-        where: { id: { in: [1,2] } },
-      });
-      res.json(categories);
+      const categories = await db.iphoneModel.findMany();
+      res.json({data:categories});
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: error.message });

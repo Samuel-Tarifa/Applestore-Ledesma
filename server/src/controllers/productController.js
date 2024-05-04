@@ -7,6 +7,7 @@ const productController = {
         include: { iphoneModel: true, attributes: true, category: true },
       });
 
+      // Obtener los datos de las relaciones y agregar la ruta a la imagen
       for (const product of products) {
         const modelIds = product.iphoneModel.map(
           (model) => model.iphoneModelId
@@ -14,22 +15,19 @@ const productController = {
         product.iphoneModel = await db.iphoneModel.findMany({
           where: { id: { in: modelIds } },
         });
-      }
-
-      // Obtener los detalles de los atributos para cada producto
-      for (const product of products) {
         const attributesIds = product.attributes
           .map((attr) => attr.attributeId);
         product.attributes = await db.attribute.findMany({
           where: { id: { in: attributesIds } },
         });
+        product.image=`http://localhost:3000/products/${product.image}.webp`
       }
       
       const productsToResponse=products.map(item=>{
         return item
       })
 
-      res.json(productsToResponse);
+      res.json({data:productsToResponse});
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: error.message });

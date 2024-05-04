@@ -1,6 +1,6 @@
 import Header from "./components/Header";
 import Hero from "./components/Hero";
-import Products from "./components/Products";
+import PageProducts from "./components/PageProducts";
 import Footer from "./components/Footer";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
@@ -10,7 +10,7 @@ function App() {
       <Header />
       <Routes>
         <Route exact path="/" element={<Hero/>}/>
-        <Route exact path="/products" element={<Products/>}/>
+        <Route exact path="/products" element={<PageProducts/>}/>
       </Routes>
       <Footer/>
     </div>
