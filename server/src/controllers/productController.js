@@ -11,7 +11,7 @@ const productController = {
         const modelIds = product.iphoneModel.map(
           (model) => model.iphoneModelId
         );
-        product.iphoneModelDetails = await db.iphoneModel.findMany({
+        product.iphoneModel = await db.iphoneModel.findMany({
           where: { id: { in: modelIds } },
         });
       }
@@ -20,21 +20,12 @@ const productController = {
       for (const product of products) {
         const attributesIds = product.attributes
           .map((attr) => attr.attributeId);
-        product.attributeDetails = await db.attribute.findMany({
+        product.attributes = await db.attribute.findMany({
           where: { id: { in: attributesIds } },
         });
       }
       
       const productsToResponse=products.map(item=>{
-        delete item.iphoneModel
-        delete item.attributes
-        delete item.description
-        delete item.discount
-        delete item.stock
-        delete item.categoryId
-        delete item.createdAt
-        delete item.updatedAt
-
         return item
       })
 
