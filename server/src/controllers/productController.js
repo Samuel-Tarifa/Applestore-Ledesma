@@ -38,7 +38,7 @@ const productController = {
         return item
       })
 
-      res.json(productsToResponse[productsToResponse.length-1]);
+      res.json(productsToResponse);
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: error.message });

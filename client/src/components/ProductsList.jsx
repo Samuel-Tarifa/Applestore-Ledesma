@@ -12,7 +12,7 @@ const ProductsList=()=>{
             <ProductCard
             key={product.idDrink}
             name={product.strDrink}
-            image={product.strDrinkThumb}
+            image='http://localhost:3000/amarillo.jpg'
             price={product.idDrink}
             />
           ))}
