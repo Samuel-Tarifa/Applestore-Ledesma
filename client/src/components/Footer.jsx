@@ -4,7 +4,7 @@ import igIcon from "../assets/instagram.webp";
 
 const Footer = () => {
   return (
-    <footer className="bg-black flex h-[16vh] justify-around px-6 max-w-full">
+    <footer className="bg-black flex h-[16vh] justify-around px-6 w-full max-w-full self-end mt-10">
       <nav className="flex flex-col md:flex-row md:justify-around md:w-1/2 h-full gap-4 mt-auto justify-center">
         <div className="flex items-center gap-2">
           <img

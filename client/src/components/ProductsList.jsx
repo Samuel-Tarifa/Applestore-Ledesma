@@ -8,7 +8,7 @@ const ProductsList = () => {
 
   return (
     <section className="flex flex-col items-center">
-      <div className="grid product-list gap-4 w-full max-w-6xl">
+      <div className="grid product-list gap-4 w-full max-w-6xl place-items-center">
         {filteredProducts?.map((product) => (
           <ProductCard
             key={product.id}

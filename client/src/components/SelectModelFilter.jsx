@@ -14,8 +14,7 @@ const SelectModelFilter = () => {
 
   return (
     <div className="flex gap-2">
-      <h2>filtros: {JSON.stringify(filters)}</h2>
-      <label htmlFor={selectModelId}>Selecciona tu modelo de iPhone:</label>
+      <label htmlFor={selectModelId} className="text-pretty">Selecciona tu modelo de iPhone:</label>
       <select
         name="modelsFilter"
         id={selectModelId}
