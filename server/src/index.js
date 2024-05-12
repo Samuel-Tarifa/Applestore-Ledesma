@@ -17,10 +17,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/product", productsRouter);
-app.use("/api/category", categoriesRouter);
 app.use("/api/iPhoneModel", iPhoneModelRouter);
+/* 
+app.use("/api/category", categoriesRouter);
 app.use("/api/attributes", attributesRouter);
-
+ */
 app.listen(process.env.LOCAL_PORT, () => {
   console.log(`Servidor corriendo en el puerto ${process.env.LOCAL_PORT}`);
 });

@@ -1,33 +1,62 @@
 import db from "../db.js";
 
 const productController = {
+  getOne: async (req, res) => {
+    try {
+      const product = await db.product.findUnique({
+        where: { id: req.params.id },
+        include: {
+          attributes: {
+            select: { attribute: true },
+          },
+          iphoneModel: {
+            select: { iphoneModel: true },
+          },
+        },
+      });
+
+      product.iphoneModel=product.iphoneModel.map(model=>model.iphoneModel)
+      product.attributes=product.attributes.map(attribute=>attribute.attribute)
+
+      if (!product) res.status(404).json("No se encontró ningún producto");
+
+      res.json({ data: product });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  },
   getAll: async (req, res) => {
     try {
       const products = await db.product.findMany({
-        include: { iphoneModel: true, attributes: true, category: true },
+        include: {
+          category: true,
+          attributes: {
+            select: {
+              attribute: true,
+            },
+          },
+          iphoneModel: {
+            select: {
+              iphoneModel: true,
+            },
+          },
+        },
       });
 
-      // Obtener los datos de las relaciones y agregar la ruta a la imagen
+      // Formatear/simplificar los objetos de attributes y iphoneModel y agregar la ruta a la imagen
       for (const product of products) {
-        const modelIds = product.iphoneModel.map(
-          (model) => model.iphoneModelId
+        product.iphoneModel = product.iphoneModel.map(
+          (model) => model.iphoneModel
         );
-        product.iphoneModel = await db.iphoneModel.findMany({
-          where: { id: { in: modelIds } },
-        });
-        const attributesIds = product.attributes
-          .map((attr) => attr.attributeId);
-        product.attributes = await db.attribute.findMany({
-          where: { id: { in: attributesIds } },
-        });
-        product.image=`http://localhost:3000/products/${product.image}.webp`
+        product.attributes = product.attributes.map(
+          (attribute) => attribute.attribute
+        );
+        product.image = `http://localhost:3000/products/${product.image}.webp`;
       }
-      
-      const productsToResponse=products.map(item=>{
-        return item
-      })
 
-      res.json({data:productsToResponse});
+      const productsToResponse = products;
+
+      res.json({ data: productsToResponse });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: error.message });
