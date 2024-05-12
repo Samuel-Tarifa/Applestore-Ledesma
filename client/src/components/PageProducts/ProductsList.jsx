@@ -1,4 +1,4 @@
-import { useProducts } from "../hooks/useProducts";
+import { useProducts } from "../../hooks/useProducts";
 import ProductCard from "./ProductCard";
 
 const ProductsList = () => {

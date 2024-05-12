@@ -1,6 +1,6 @@
 import ProductsList from "./ProductsList";
 import PageProductsHeader from "./PageProductsHeader";
-import { FiltersProvider } from "../context/filterProducts";
+import { FiltersProvider } from "../../context/filterProducts";
 const Products = () => {
   return (
     <FiltersProvider>

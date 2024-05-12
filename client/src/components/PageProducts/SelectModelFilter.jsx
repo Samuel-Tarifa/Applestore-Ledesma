@@ -1,6 +1,6 @@
 import { useContext, useId } from "react";
-import { useIPhoneModels } from "../hooks/useIPhoneModels";
-import { FiltersContext } from "../context/filterProducts";
+import { useIPhoneModels } from "../../hooks/useIPhoneModels";
+import { FiltersContext } from "../../context/filterProducts";
 
 const SelectModelFilter = () => {
   const { filters,setFilters } = useContext(FiltersContext);

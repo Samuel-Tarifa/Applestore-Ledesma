@@ -1,6 +1,6 @@
-import logo from "../assets/logo.png";
-import wppIcon from "../assets/whatsapp.webp";
-import igIcon from "../assets/instagram.webp";
+import logo from "../../assets/logo.png";
+import wppIcon from "../../assets/whatsapp.webp";
+import igIcon from "../../assets/instagram.webp";
 
 const Footer = () => {
   return (
