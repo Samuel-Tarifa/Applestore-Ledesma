@@ -18,6 +18,9 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/product", productsRouter);
 app.use("/api/iPhoneModel", iPhoneModelRouter);
+app.use("/test", (req, res) => {
+  res.send("testing route");
+});
 /* 
 app.use("/api/category", categoriesRouter);
 app.use("/api/attributes", attributesRouter);
