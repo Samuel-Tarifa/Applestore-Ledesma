@@ -17,6 +17,7 @@ const productController = {
 
       product.iphoneModel=product.iphoneModel.map(model=>model.iphoneModel)
       product.attributes=product.attributes.map(attribute=>attribute.attribute)
+      product.image = `${process.env.URL}/products/${product.image}.webp`;
 
       if (!product) res.status(404).json("No se encontró ningún producto");
 
@@ -51,7 +52,7 @@ const productController = {
         product.attributes = product.attributes.map(
           (attribute) => attribute.attribute
         );
-        product.image = `http://localhost:3000/products/${product.image}.webp`;
+        product.image = `${process.env.URL}/products/${product.image}.webp`;
       }
 
       const productsToResponse = products;

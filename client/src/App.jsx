@@ -10,7 +10,7 @@ function App() {
       <Header />
       <Routes>
         <Route exact path="/" element={<Hero/>}/>
-        <Route exact path="/products" element={<PageProducts/>}/>
+        <Route exact path="/products/*" element={<PageProducts/>}/>
       </Routes>
       <Footer/>
     </div>
