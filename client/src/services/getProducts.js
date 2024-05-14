@@ -1,10 +1,12 @@
-export const getProducts = () => {
-  return fetch("https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin")
-    .then((res) => {
-      return res.json();
-    })
-    .catch((error) => {
-      console.error("Error al obtener los productos:", error);
-      throw error;
-    });
+const { VITE_API_URL } = import.meta.env;
+
+export const getProducts = async (id) => {
+  try {
+    const search = id ? `/${id}` : "";
+    const res = await fetch(`${VITE_API_URL}/api/product` + search);
+    return await res.json();
+  } catch (error) {
+    console.error("Error al obtener los productos:", error);
+    throw error;
+  }
 };

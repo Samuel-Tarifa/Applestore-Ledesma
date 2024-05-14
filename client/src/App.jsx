@@ -1,7 +1,7 @@
-import Header from "./components/Header";
-import Hero from "./components/Hero";
-import Products from "./components/Products";
-import Footer from "./components/Footer";
+import Header from "./components/Layout/Header";
+import Hero from "./components/HomePage/Hero";
+import PageProducts from "./components/PageProducts/PageProducts";
+import Footer from "./components/Layout/Footer";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 function App() {
@@ -10,7 +10,7 @@ function App() {
       <Header />
       <Routes>
         <Route exact path="/" element={<Hero/>}/>
-        <Route exact path="/products" element={<Products/>}/>
+        <Route exact path="/products/*" element={<PageProducts/>}/>
       </Routes>
       <Footer/>
     </div>

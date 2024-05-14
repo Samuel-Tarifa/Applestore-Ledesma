@@ -1,5 +1,5 @@
-import ArrowRight from "../icons/ArrowRight";
-import iphone from "../assets/iphone.webp";
+import ArrowRight from "../../icons/ArrowRight";
+import iphone from "../../assets/iphone.webp";
 import { Link } from "react-router-dom";
 
 const Hero = () => {

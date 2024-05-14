@@ -9,7 +9,7 @@ export default {
         purple300: "#C4B5FD",
         black: "#111827",
         green: "#00E510",
-        gray:'#F5F5F5'
+        gray:'#E5E7EB'
       },
     },
   },
