@@ -21,6 +21,9 @@ app.use("/api/iPhoneModel", iPhoneModelRouter);
 app.use("/test", (req, res) => {
   res.send("testing route");
 });
+app.use("/", (req, res) => {
+  res.send("testing home");
+});
 /* 
 app.use("/api/category", categoriesRouter);
 app.use("/api/attributes", attributesRouter);
