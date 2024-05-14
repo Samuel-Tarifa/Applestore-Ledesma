@@ -6,19 +6,18 @@ body {
 }
 
 :root {
-  font-family: "Inter", "Arial";
+  font-family: "Roboto", "Inter", "Arial";
 }
 
-.circle-container{
+.circle-container {
   position: absolute;
   width: 35vw;
   aspect-ratio: 1/2;
-  overflow:hidden;
+  overflow: hidden;
   top: 50%;
   transform: translateY(-50%);
   right: 0;
   z-index: -100;
-
 }
 
 .circle {
@@ -28,18 +27,18 @@ body {
   border-radius: 50%;
 }
 
-.product-list{
+.product-list {
   grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
 }
 
 @media (min-width: 768px) {
-  .circle{
+  .circle {
     width: 36vw;
   }
-  .circle-container{
+  .circle-container {
     width: 18vw;
   }
-  .product-list{
+  .product-list {
     grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
   }
 }
@@ -51,5 +50,3 @@ body {
   border-radius: 50%;
   background-color: #c3c3c3;
 }
-
-
