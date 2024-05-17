@@ -7,7 +7,8 @@
   "scripts": {
     "testdb": "node src/database/database.js",
     "dev": "nodemon src/index.js",
-    "start":"node src/index.js"
+    "start":"node src/index.js",
+    "build":"prisma generate"
   },
   "keywords": [],
   "author": "",
