@@ -7,7 +7,6 @@
   "scripts": {
     "testdb": "node src/database/database.js",
     "dev": "nodemon src/index.js",
-    "build":"npm install",
     "start":"node src/index.js"
   },
   "keywords": [],
