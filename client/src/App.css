@@ -5,7 +5,7 @@ body {
   background: white;
 }
 
-.favicon{
+.favicon {
   border-radius: 50%;
 }
 
@@ -53,4 +53,49 @@ body {
   z-index: -10;
   border-radius: 50%;
   background-color: #c3c3c3;
+}
+
+.placeholder-card{
+  width: 100%;
+  max-width: 48rem;
+  aspect-ratio: 1/1;
+  background: #ffffff;
+}
+
+.name-placeholder{
+  height: 3rem;
+  width: 100%;
+  max-width: 20rem;
+  margin-top: 1.5rem;
+}
+
+.price-placeholder{
+  height: 1.5rem;
+  width: 40%;
+  max-width: 10rem;
+  margin-top: 1rem;
+}
+
+.placeholder-skeleton{
+  border-radius: 1rem;
+  background-image: linear-gradient(
+    90deg,
+    #ccc 0px,
+    rgb(229 229 229 / 90%) 40px,
+    #ccc 80px
+  );
+  background-size: 300%;
+  background-position: 100% 0;
+  animation: shimmer 1.5s infinite;
+}
+
+.image-placeholder {
+  width: 66%;
+  aspect-ratio: 1/1;
+}
+
+@keyframes shimmer {
+  to{
+    background-position: -100% 0;
+  }
 }

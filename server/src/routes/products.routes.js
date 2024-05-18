@@ -4,6 +4,8 @@ const router=Router()
 
 router.get('/',productController.getAll)
 router.get('/:id',productController.getOne)
+router.get('/page/:page',productController.getWithPage)
+
 
 //router.post('/create',productController.create)
 
