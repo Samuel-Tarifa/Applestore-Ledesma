@@ -3,8 +3,8 @@ import { createContext, useState } from "react";
 export const FiltersContext = createContext();
 
 // eslint-disable-next-line react/prop-types
-export function FiltersProvider({children}) {
-  const [filters, setFilters] = useState({ model: "All" });
+export function FiltersProvider({ children }) {
+  const [filters, setFilters] = useState({ model: "All", category: "Silicone Case" });
   return (
     <FiltersContext.Provider value={{ filters, setFilters }}>
       {children}

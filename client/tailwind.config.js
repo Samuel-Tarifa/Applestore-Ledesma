@@ -9,7 +9,9 @@ export default {
         purple300: "#C4B5FD",
         black: "#000000",
         green: "#00E510",
-        gray:'#E5E7EB'
+        gray:'#E5E7EB',
+        accent:'hsl(240 4.8% 95.9%)',
+        menuBorder:'hsl(240 5.9% 90%)'
       },
     },
   },

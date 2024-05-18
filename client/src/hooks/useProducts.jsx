@@ -7,16 +7,17 @@ export function useProducts() {
   const [error, setError] = useState(null);
   const { filters } = useContext(FiltersContext);
 
-  if(!filters) console.error('Filters Context must be used within provider')
+  if (!filters) console.error("Filters Context must be used within provider");
 
   const filterProducts = (products) => {
     return products.filter((product) => {
       return (
-        filters.model === "All" ||
-        (product.iphoneModel[0] &&
-          product.iphoneModel[0].name === filters.model) ||
-        (product.iphoneModel[1] &&
-          product.iphoneModel[1].name === filters.model)
+        (filters.model === "All" ||
+          (product.iphoneModel[0] &&
+            product.iphoneModel[0].name === filters.model) ||
+          (product.iphoneModel[1] &&
+            product.iphoneModel[1].name === filters.model)) &
+        (filters.category === "All" || product.category.name === filters.category)
       );
     });
   };
