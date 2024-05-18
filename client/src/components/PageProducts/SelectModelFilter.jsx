@@ -13,12 +13,12 @@ const SelectModelFilter = () => {
   };
 
   return (
-    <div className="flex gap-2">
-      <label htmlFor={selectModelId} className="text-pretty">Selecciona tu modelo de iPhone:</label>
+    <div className="flex flex-col md:flex-row gap-2 items-center">
+      <label htmlFor={selectModelId} className="text-pretty grow text-center">Selecciona tu modelo de iPhone:</label>
       <select
         name="modelsFilter"
         id={selectModelId}
-        className="rounded border"
+        className="rounded border w-auto text-center p-1 h-min"
         onChange={handleChange}
         value={filters.model}
       >

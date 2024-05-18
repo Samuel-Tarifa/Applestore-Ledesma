@@ -5,6 +5,10 @@ body {
   background: white;
 }
 
+.favicon{
+  border-radius: 50%;
+}
+
 :root {
   font-family: "Roboto", "Inter", "Arial";
 }

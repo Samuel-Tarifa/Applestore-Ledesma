@@ -1,4 +1,4 @@
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo.webp";
 import wppIcon from "../../assets/whatsapp.webp";
 import igIcon from "../../assets/instagram.webp";
 
@@ -24,7 +24,7 @@ const Footer = () => {
         </div>
       </nav>
       <div className="flex flex-col items-center justify-center">
-        <img src={logo} alt="Logo de applestore Ledesma" />
+        <img className="rounded-full overflow-hidden self-end" src={logo} alt="Logo de applestore Ledesma" />
       </div>
     </footer>
   );

@@ -6,7 +6,7 @@ const ProductCard = ({ id, image, name, price }) => {
     <Link to={`/products/${id}`}>
         <article className="flex flex-col border-gray border border-solid p-4 gap-4 items-center rounded-2xl text-center max-w-80">
         <img
-          className="w-2/3 h-auto rounded-xl overflow-hidden"
+          className="w-2/3 h-auto rounded-xl overflow-hidden aspect-square"
           src={image}
           alt={name}
         />
