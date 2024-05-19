@@ -1,17 +1,17 @@
-import { Link } from "react-router-dom"
-import PropTypes from 'prop-types'
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-const NavItem=({title,url})=>{
-  return(
-  <Link to={url}>
-  <li>{title}</li>
-  </Link>
-)
-}
+const NavItem = ({ title, url }) => {
+  return (
+    <li>
+      <Link to={url}>{title}</Link>
+    </li>
+  );
+};
 
-NavItem.propTypes={
-  title:PropTypes.string.isRequired,
-  url:PropTypes.string.isRequired
-}
+NavItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+};
 
-export default NavItem
+export default NavItem;
