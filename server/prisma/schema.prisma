@@ -14,7 +14,7 @@ datasource db {
 
 model Product{
   id String @id @default(uuid())
-  name String @unique
+  name String
   price String
   image String @unique @default("defaultImage.webp")
   iphoneModel IphoneModelOnProduct[]

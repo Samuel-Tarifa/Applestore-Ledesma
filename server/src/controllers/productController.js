@@ -1,6 +1,6 @@
 import db from "../db.js";
 
-const urlImageCompressed=`${process.env.URL}/products_compressed800x800`
+const urlImageCompressed=`${process.env.URL}/products_compressed`
 const urlImageBig=`${process.env.URL}/products`
 
 const productController = {

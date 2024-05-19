@@ -1,13 +1,13 @@
 import db from "../db.js";
 
 const product = {
-  name: "Cable de carga USB-C to Lighting",
-  price: "3.500",
-  image: "Cable de carga USB-C to Lighting",
-  categoryId: 2,
+  name: "Silicone case iPhone 15Pro Max",
+  price: "5500",
+  image: "Silicone case iPhone 15Pro Max_4",
+  categoryId: 9,
 };
 const connectionData = {
-  iphoneModel: [ { id: 21 }],
+  iphoneModel: [{ id: 23 }],
 
   attributes: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }],
 };
@@ -17,7 +17,7 @@ const createProduct = async () => {
     const productCreated = await db.product.create({ data: product });
     console.log("Products created successfully");
 
-    /* await Promise.all(
+    await Promise.all(
       connectionData.iphoneModel.map(async (model) => {
         await db.iphoneModelOnProduct.create({
           data: { productId: productCreated.id, iphoneModelId: model.id },
@@ -31,7 +31,7 @@ const createProduct = async () => {
           data: { productId: productCreated.id, attributeId: attribute.id },
         });
       })
-    ); */
+    );
 
     console.log("Products connected successfully");
   } catch (error) {
@@ -40,3 +40,17 @@ const createProduct = async () => {
 };
 
 createProduct();
+
+/* const deleteProduct=async () => {
+  try {
+    const productDeleted= await db.product.delete({
+      where:{
+        id:'d0e3f973-4713-4d10-a37b-aca5ea5dfdeb'
+      }
+    })
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+deleteProduct() */
