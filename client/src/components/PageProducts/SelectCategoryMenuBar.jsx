@@ -2,16 +2,23 @@ import { useContext } from "react";
 import { FiltersContext } from "../../context/filterProducts";
 
 const SelectCategoryMenuBar = () => {
-
   const { filters, setFilters } = useContext(FiltersContext);
 
   const handleChange = (category) => {
-    setFilters((prevState) => ({ ...prevState, category: category }));
+    if (filters.model === "All") {
+      setFilters((prevState) => ({ ...prevState, category: category }));
+    } else {
+      setFilters((prevState) => ({
+        ...prevState,
+        category: category,
+        model: "All",
+      }));
+    }
   };
 
   const categories = [
-    { name: 'Fundas', value: 'Silicone Case' },
-    { name: 'Cargadores', value: 'Cargadores' }
+    { name: "Fundas", value: "Silicone Case" },
+    { name: "Cargadores", value: "Cargadores" },
   ];
 
   return (
@@ -19,9 +26,13 @@ const SelectCategoryMenuBar = () => {
       {categories.map((category) => (
         <li
           key={category.value}
-          className={`p-1 px-4 rounded my-1 flex items-center ${filters.category === category.value ? 'bg-accent' : ''}`}
+          className={`p-1 px-4 rounded my-1 flex items-center ${
+            filters.category === category.value ? "bg-accent" : ""
+          }`}
         >
-          <button onClick={() => handleChange(category.value)}>{category.name}</button>
+          <button onClick={() => handleChange(category.value)}>
+            {category.name}
+          </button>
         </li>
       ))}
     </ul>
