@@ -35,6 +35,7 @@ const productController = {
       const products = await db.product.findMany({
         include: {
           category: true,
+          type:true,
           attributes: {
             select: {
               attribute: true,
