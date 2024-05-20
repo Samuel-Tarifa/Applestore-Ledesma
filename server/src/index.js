@@ -21,10 +21,10 @@ app.use("/api/iPhoneModel", iPhoneModelRouter);
 app.get("/", (req, res) => {
   res.send("testing home");
 });
-/* 
+
 app.use("/api/category", categoriesRouter);
 app.use("/api/attributes", attributesRouter);
- */
+
 app.listen(process.env.LOCAL_PORT, () => {
   console.log(`Servidor corriendo en el puerto ${process.env.LOCAL_PORT}`);
 });

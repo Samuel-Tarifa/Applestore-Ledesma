@@ -4,7 +4,7 @@ const categoryController = {
   getAll: async (req, res) => {
     try {
       const categories = await db.category.findMany();
-      res.json(categories);
+      res.json({ data: categories });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: error.message });
