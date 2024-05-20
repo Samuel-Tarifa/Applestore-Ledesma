@@ -1,8 +1,11 @@
 import { useContext } from "react";
 import { FiltersContext } from "../../context/filterProducts";
+import { useCategory } from "../../hooks/useCategory";
 
 const SelectCategoryMenuBar = () => {
   const { filters, setFilters } = useContext(FiltersContext);
+
+  const {category} = useCategory();
 
   const handleChange = (category) => {
     if (filters.model === "All") {
@@ -16,21 +19,16 @@ const SelectCategoryMenuBar = () => {
     }
   };
 
-  const categories = [
-    { name: "Fundas", value: "Silicone Case" },
-    { name: "Cargadores", value: "Cargadores" },
-  ];
-
   return (
     <ul className="flex w-[75%] max-w-60 px-1 justify-between rounded-lg border border-menuBorder">
-      {categories.map((category) => (
+      {category.map((category) => (
         <li
-          key={category.value}
+          key={category.id}
           className={`p-1 px-4 rounded my-1 flex items-center ${
-            filters.category === category.value ? "bg-accent" : ""
+            filters.category === category.name ? "bg-accent" : ""
           }`}
         >
-          <button onClick={() => handleChange(category.value)}>
+          <button onClick={() => handleChange(category.name)}>
             {category.name}
           </button>
         </li>
