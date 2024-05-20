@@ -7,7 +7,7 @@ export function FiltersProvider({ children }) {
   const [filters, setFilters] = useState({
     model: "All",
     category: "All",
-    type: "All",
+    type: "Fundas",
   });
   return (
     <FiltersContext.Provider value={{ filters, setFilters }}>

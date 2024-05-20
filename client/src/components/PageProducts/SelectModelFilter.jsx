@@ -13,7 +13,7 @@ const SelectModelFilter = () => {
   };
 
   return (
-    filters.category !== 'Cargadores' && (
+    filters.type === 'Fundas' && (
       <div className="flex flex-col md:flex-row gap-2 items-center">
         <label htmlFor={selectModelId} className="text-pretty grow text-center">
           Selecciona tu modelo de iPhone:
