@@ -3,6 +3,8 @@ import wppIcon from "../../assets/whatsapp.webp";
 import igIcon from "../../assets/instagram.webp";
 
 const Footer = () => {
+  const numberToMessage = import.meta.env.VITE_NUMBER_WPP;
+
   return (
     <footer className="bg-black flex h-[16vh] justify-around px-6 w-full max-w-full self-end mt-10">
       <nav className="flex flex-col md:flex-row md:justify-around md:w-1/2 h-full gap-4 mt-auto justify-center">
@@ -20,7 +22,7 @@ const Footer = () => {
             src={wppIcon}
             alt="Icono de WhatsApp"
           />
-          <h3 className="text-white">+543886101010</h3>
+          <h3 className="text-white">{numberToMessage}</h3>
         </div>
       </nav>
       <div className="flex flex-col items-center justify-center">

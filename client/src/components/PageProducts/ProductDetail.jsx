@@ -12,9 +12,10 @@ const ProductDetail = () => {
   const { product } = useProductDetail(productId);
 
   const numberToMessage = import.meta.env.VITE_NUMBER_WPP;
+  const url='https://applestore-ledesma.vercel.app/products'
 
   const wppMessage = product
-    ? `Hola! me interesa el ${product.name} que vi en la web de applestore-ledesma`
+    ? `Hola! me interesa el ${product.name} que vi en la web de applestore-ledesma: ${url}/${product.id}`
     : "";
 
   useEffect(() => {
