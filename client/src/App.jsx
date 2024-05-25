@@ -4,15 +4,20 @@ import PageProducts from "./components/PageProducts/PageProducts";
 import Footer from "./components/Layout/Footer";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
+
+import { inject } from '@vercel/analytics';
+
+inject();
+
 function App() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
       <Routes>
-        <Route exact path="/" element={<Hero/>}/>
-        <Route exact path="/products/*" element={<PageProducts/>}/>
+        <Route exact path="/" element={<Hero />} />
+        <Route exact path="/products/*" element={<PageProducts />} />
       </Routes>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
