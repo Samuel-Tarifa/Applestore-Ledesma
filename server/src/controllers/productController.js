@@ -99,7 +99,7 @@ const productController = {
 
   getWithPage: async (req, res) => {
     const page = parseInt(req.params.page, 10) || 0;
-    const itemsPerPage = 10;
+    const itemsPerPage = 5;
     try {
       const products = await db.product.findMany({
         skip: itemsPerPage * page,
