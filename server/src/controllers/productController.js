@@ -21,7 +21,7 @@ const productController = {
       if (!product) {
         return res.status(404).json({
           ok: false,
-          message: "No se encontró ningún producto",
+          error: { message: "No se encontró ningún producto" },
         });
       }
 
@@ -41,8 +41,7 @@ const productController = {
     } catch (error) {
       res.status(500).json({
         ok: false,
-        message: "Error al obtener el producto",
-        error: error.message,
+        error: error,
       });
     }
   },
@@ -69,7 +68,8 @@ const productController = {
       if (products.length === 0) {
         return res.status(404).json({
           ok: false,
-          message: "No se encontraron productos",
+          error: { message: "No se encontraron productos" },
+          data: [],
         });
       }
 
@@ -92,8 +92,7 @@ const productController = {
       console.error(error);
       res.status(500).json({
         ok: false,
-        message: "Error al obtener los productos",
-        error: error.message,
+        error: error,
       });
     }
   },
@@ -106,6 +105,7 @@ const productController = {
         take: 10,
         include: {
           category: true,
+          type:true,
           attributes: {
             select: {
               attribute: true,
@@ -151,8 +151,7 @@ const productController = {
       console.error(error);
       res.status(500).json({
         ok: false,
-        message: "Error al obtener los productos paginados",
-        error: error.message,
+        error: error,
       });
     }
   },
@@ -169,8 +168,7 @@ const productController = {
       console.error(error);
       res.status(500).json({
         ok: false,
-        message: "Error al crear el producto",
-        error: error.message,
+        error: error,
       });
     }
   },
