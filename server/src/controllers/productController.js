@@ -122,7 +122,7 @@ const productController = {
       if (products.length === 0) {
         return res.status(404).json({
           ok: false,
-          message: "No se encontraron más productos",
+          error:{message: "No se encontraron más productos"},
           data: [],
         });
       }
