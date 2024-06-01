@@ -99,13 +99,14 @@ const productController = {
 
   getWithPage: async (req, res) => {
     const page = parseInt(req.params.page, 10) || 0;
+    const itemsPerPage = 10;
     try {
       const products = await db.product.findMany({
-        skip: 10 * page,
-        take: 10,
+        skip: itemsPerPage * page,
+        take: itemsPerPage,
         include: {
           category: true,
-          type:true,
+          type: true,
           attributes: {
             select: {
               attribute: true,
@@ -119,10 +120,17 @@ const productController = {
         },
       });
 
+      const nextPageProducts = await db.product.findMany({
+        skip: itemsPerPage * (page + 1),
+        take: 1, // Solo necesitamos comprobar si existe al menos un producto más
+      });
+
+      const hasMoreProducts = nextPageProducts.length > 0;
+
       if (products.length === 0) {
         return res.status(404).json({
           ok: false,
-          error:{message: "No se encontraron más productos"},
+          error: { message: "No se encontraron más productos" },
           data: [],
         });
       }
@@ -143,7 +151,7 @@ const productController = {
         data: products,
         info: {
           page: page,
-          nextPage: page + 1,
+          nextPage: hasMoreProducts ? page + 1 : null,
           results: products.length,
         },
       });

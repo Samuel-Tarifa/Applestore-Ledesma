@@ -12,7 +12,7 @@ const ProductDetail = () => {
   const { product } = useProductDetail(productId);
 
   const numberToMessage = import.meta.env.VITE_NUMBER_WPP;
-  const url='https://applestore-ledesma.vercel.app/products'
+  const url = "https://applestore-ledesma.vercel.app/products";
 
   const wppMessage = product
     ? `Hola! me interesa el ${product.name} que vi en la web de applestore-ledesma: ${url}/${product.id}`
@@ -44,7 +44,6 @@ const ProductDetail = () => {
                 effect="blur"
                 onLoad={() => {
                   setDataLoaded(true);
-                  console.log("Imagen Cargada");
                 }}
               />
             </div>

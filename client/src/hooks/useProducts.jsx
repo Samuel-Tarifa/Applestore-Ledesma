@@ -1,35 +1,38 @@
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 import { getProducts } from "../services/getProducts";
 import { FiltersContext } from "../context/filterProducts";
+import filterProducts from "../utils/filterProducts";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 export function useProducts() {
-  const [products, setProducts] = useState([]);
-  const [error, setError] = useState(null);
   const { filters } = useContext(FiltersContext);
 
   if (!filters) console.error("Filters Context must be used within provider");
 
-  const filterProducts = (products) => {
-    return products.filter((product) => {
-      return (
-        (filters.model === "All" ||
-          (product.iphoneModel[0] &&
-            product.iphoneModel[0].name === filters.model) ||
-          (product.iphoneModel[1] &&
-            product.iphoneModel[1].name === filters.model)) &
-        (filters.category === "All" ||
-          product.category.name === filters.category) &
-        (filters.type === "All" || product.type.name === filters.type)
-      );
-    });
+  const {
+    data,
+    isLoading,
+    isError,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    error,
+  } = useInfiniteQuery({
+    queryKey: ["products"],
+    queryFn: getProducts,
+    initialPageParam: 0,
+    getNextPageParam: (lastPage) => lastPage.info.nextPage,
+  });
+
+  const products = data?.pages.flatMap((page) => page.data);
+
+  return {
+    products: filterProducts(products, filters),
+    isError,
+    isLoading,
+    fetchNextPage,
+    hasNextPage,
+    error,
+    isFetchingNextPage,
   };
-
-  useEffect(() => {
-    getProducts().then((result) => {
-      !result.success ? setError(result.error) : setError(null);
-      setProducts(result.data);
-    });
-  }, []);
-
-  return { products, error, filterProducts };
 }

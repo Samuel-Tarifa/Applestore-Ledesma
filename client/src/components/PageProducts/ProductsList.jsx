@@ -1,22 +1,34 @@
-import { useEffect, useState } from "react";
 import { useProducts } from "../../hooks/useProducts";
 import ProductCard from "./ProductCard";
+import { useInView } from "react-intersection-observer";
 
 const ProductsList = () => {
-  const { products, filterProducts } = useProducts();
-  const [dataLoaded, setDataLoaded] = useState(false);
-  const placeholders = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-
-  useEffect(() => {
-    if (products.length > 0) setDataLoaded(true);
-  }, [products]);
-
-  const filteredProducts = filterProducts(products);
+  const {
+    products,
+    isLoading,
+    isError,
+    fetchNextPage,
+    isFetchingNextPage,
+    hasNextPage,
+  } = useProducts();
+  const placeholders = [1, 2, 3];
+  const [observerRef] = useInView({
+    threshold: 1.0,
+    onChange: (inView) => {
+      if (inView && hasNextPage) {
+        fetchNextPage();
+      }
+    },
+  });
 
   return (
-    <section className="flex flex-col items-center w-full">
+    <section className="flex flex-col items-center w-full gap-8">
       <div className="grid product-list gap-4 w-full max-w-6xl place-items-center">
-        {!dataLoaded &&
+        {isError && !isLoading && (
+          <h3>Hubo un error al cargar los productos</h3>
+        )}
+        {isLoading &&
+          !isError &&
           placeholders.map((item, index) => (
             <article
               key={index}
@@ -29,8 +41,9 @@ const ProductsList = () => {
               </div>
             </article>
           ))}
-        {dataLoaded &&
-          filteredProducts.map((product) => (
+        {!isLoading &&
+          !isError &&
+          products.map((product) => (
             <ProductCard
               key={product.id}
               id={product.id}
@@ -40,6 +53,9 @@ const ProductsList = () => {
             />
           ))}
       </div>
+      {!isLoading && !isFetchingNextPage && !isError && hasNextPage && (
+        <div ref={observerRef}>Cargar más</div>
+      )}
     </section>
   );
 };

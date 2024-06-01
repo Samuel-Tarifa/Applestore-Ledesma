@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import { getProducts } from "../services/getProducts";
+import { getProductDetail } from "../services/getProductDetail";
 
 export function useProductDetail(id) {
   const [product, setProduct] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    getProducts(id).then((result) => {
-      !result.success ? setError(result.error) : setError(null);
+    getProductDetail(id).then((result) => {
+      !result.ok ? setError(result.error.message) : setError(null);
       setProduct(result.data);
     });
   }, [id]);

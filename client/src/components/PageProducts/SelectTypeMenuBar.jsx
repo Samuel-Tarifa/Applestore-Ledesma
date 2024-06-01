@@ -21,7 +21,7 @@ const SelectTypeMenuBar = () => {
   };
 
   return (
-    <ul className="flex max-w-96 px-1 justify-between rounded-lg border border-menuBorder">
+    <ul className="flex max-w-96 px-1 justify-between rounded-lg border border-menuBorder h-12">
       {types.map((type) => (
         <li
           key={type.id}
