@@ -4,7 +4,7 @@ const router=Router()
 
 router.get('/',productController.getAll)
 router.get('/:id',productController.getOne)
-router.get('/page/:page',productController.getWithPage)
+router.get('/page/:page',productController.getPaginatedProducts)
 
 
 //router.post('/create',productController.create)

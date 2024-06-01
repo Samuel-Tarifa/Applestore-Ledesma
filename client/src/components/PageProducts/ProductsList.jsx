@@ -11,9 +11,15 @@ const ProductsList = () => {
     isFetchingNextPage,
     hasNextPage,
   } = useProducts();
-  const placeholders = [1, 2, 3];
-  const [observerRef] = useInView({
-    threshold: 1.0,
+
+
+  const numPlaceholders=window.innerWidth < 455 ? 2
+  : window.innerWidth < 660 ? 4
+  : window.innerWidth < 1000 ? 6
+  : 8
+  const placeholders = Array.from({ length: numPlaceholders }, (_, i) => i);
+
+  const {ref:observerRef} = useInView({
     onChange: (inView) => {
       if (inView && hasNextPage) {
         fetchNextPage();
@@ -52,10 +58,13 @@ const ProductsList = () => {
               price={product.price}
             />
           ))}
+        {!isLoading && !isFetchingNextPage && !isError && hasNextPage && (
+          <div ref={observerRef}></div>
+        )}
       </div>
-      {!isLoading && !isFetchingNextPage && !isError && hasNextPage && (
-        <div ref={observerRef}>Cargar más</div>
-      )}
+      {isFetchingNextPage&&
+      <div className="loader"></div>
+      }
     </section>
   );
 };

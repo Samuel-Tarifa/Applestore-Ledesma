@@ -97,13 +97,20 @@ const productController = {
     }
   },
 
-  getWithPage: async (req, res) => {
+  getPaginatedProducts: async (req, res) => {
     const page = parseInt(req.params.page, 10) || 0;
-    const itemsPerPage = 5;
+    const itemsPerPage = 8;
+    const { type, model } = req.query;
+
+    const filters = {};
+    if (type && type!=='All') filters.type = { name: type };
+    if (model && model!=='All') filters.iphoneModel = { some: { iphoneModel: { name: model } } };
+
     try {
       const products = await db.product.findMany({
         skip: itemsPerPage * page,
         take: itemsPerPage,
+        where: filters,
         include: {
           category: true,
           type: true,
@@ -122,6 +129,7 @@ const productController = {
 
       const nextPageProducts = await db.product.findMany({
         skip: itemsPerPage * (page + 1),
+        where:filters,
         take: 1, // Solo necesitamos comprobar si existe al menos un producto más
       });
 

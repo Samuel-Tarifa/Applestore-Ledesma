@@ -18,8 +18,8 @@ export function useProducts() {
     isFetchingNextPage,
     error,
   } = useInfiniteQuery({
-    queryKey: ["products"],
-    queryFn: getProducts,
+    queryKey: ["products", filters],
+    queryFn: ({ pageParam }) => getProducts({ pageParam, ...filters }),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => lastPage.info.nextPage,
   });

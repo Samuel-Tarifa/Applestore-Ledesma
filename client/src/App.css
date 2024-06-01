@@ -55,28 +55,28 @@ body {
   background-color: #c3c3c3;
 }
 
-.placeholder-card{
+.placeholder-card {
   width: 100%;
   max-width: 48rem;
   aspect-ratio: 1/1;
   background: #ffffff;
 }
 
-.name-placeholder{
+.name-placeholder {
   height: 3rem;
   width: 100%;
   max-width: 20rem;
   margin-top: 1.5rem;
 }
 
-.price-placeholder{
+.price-placeholder {
   height: 1.5rem;
   width: 40%;
   max-width: 10rem;
   margin-top: 1rem;
 }
 
-.placeholder-skeleton{
+.placeholder-skeleton {
   border-radius: 1rem;
   background-image: linear-gradient(
     90deg,
@@ -95,7 +95,42 @@ body {
 }
 
 @keyframes shimmer {
-  to{
+  to {
     background-position: -100% 0;
+  }
+}
+
+.loader {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  animation: spin 1.2s linear infinite;
+}
+
+.loader::before,
+.loader::after {
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+}
+
+.loader::before {
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(0deg, #f0c 0%, #80f 100%);
+}
+
+.loader::after {
+  width: 85%;
+  height: 85%;
+  background-color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }
