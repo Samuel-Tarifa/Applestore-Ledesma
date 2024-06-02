@@ -64,6 +64,7 @@ model IphoneModelOnProduct{
 model IphoneModel{
   id Int @id @default(autoincrement())
   name String @unique
+  productsCount Int @default(0)
   products IphoneModelOnProduct[]
 }
 
