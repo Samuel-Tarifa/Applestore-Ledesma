@@ -7,7 +7,7 @@ const ProductCard = ({ id, image, name, price }) => {
   return (
     <Link to={`/products/${id}`}>
       <article className="flex flex-col border-gray border border-solid p-4 gap-4 items-center rounded-2xl text-center max-w-80 w-full">
-        <div className="w-2/3 h-auto aspect-[3/4]">
+        <div className="w-2/3 h-auto aspect-[3/4] flex flex-col justify-center">
           <LazyLoadImage
             className="rounded-xl overflow-hidden m-auto"
             src={image}
