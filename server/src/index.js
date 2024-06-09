@@ -4,6 +4,7 @@ import categoriesRouter from "./routes/categories.routes.js";
 import iPhoneModelRouter from "./routes/iPhoneModel.routes.js";
 import attributesRouter from "./routes/attributes.routes.js";
 import typesRouter from "./routes/types.routes.js";
+import authRouter from "./routes/auth.routes.js";
 
 import cors from "cors";
 //configuración de dotenv
@@ -21,7 +22,8 @@ app.use("/api/product", productsRouter);
 app.use("/api/iPhoneModel", iPhoneModelRouter);
 app.use("/api/category", categoriesRouter);
 app.use("/api/attributes", attributesRouter);
-app.use("/api/types",typesRouter)
+app.use("/api/types", typesRouter);
+app.use("/api/auth", authRouter);
 
 app.get("/", (req, res) => {
   res.send("testing home");
