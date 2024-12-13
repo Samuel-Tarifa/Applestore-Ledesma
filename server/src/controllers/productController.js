@@ -6,81 +6,81 @@ const urlImageBig = `${process.env.URL}/products`;
 const productController = {
   getOne: async (req, res) => {
     try {
-      // Extraer categoryName e iphoneModel del ID
-      const [categoryName, iphoneModelName] = req.params.id.split("$");
+        const [categoryName, iphoneModelName] = req.params.id.split("$");
 
-      // Verificar que ambos valores están presentes
-      if (!categoryName || !iphoneModelName) {
-        return res.status(400).json({
-          ok: false,
-          error: { message: "El ID proporcionado no es válido" },
-        });
-      }
+        if (!categoryName || !iphoneModelName) {
+            return res.status(400).json({
+                ok: false,
+                error: { message: "El ID proporcionado no es válido" },
+            });
+        }
 
-      // Buscar los productos en la base de datos que coincidan con la categoría y el modelo de iPhone
-      const products = await db.product.findMany({
-        where: {
-          category: {
-            name: categoryName,
-          },
-          iphoneModel: {
-            some: {
-              iphoneModel: {
-                name: iphoneModelName,
-              },
+        const iphoneModels = iphoneModelName.split("-");
+
+        const products = await db.product.findMany({
+            where: {
+                category: {
+                    name: categoryName,
+                },
+                iphoneModel: {
+                    some: {
+                        iphoneModel: {
+                            name: { in: iphoneModels }, // Buscar cualquier modelo en la lista
+                        },
+                    },
+                },
             },
-          },
-        },
-        include: {
-          category: {
-            select: { name: true },
-          },
-          iphoneModel: {
-            select: {
-              iphoneModel: {
-                select: { name: true },
-              },
+            include: {
+                category: {
+                    select: { name: true },
+                },
+                iphoneModel: {
+                    select: {
+                        iphoneModel: {
+                            select: { name: true },
+                        },
+                    },
+                },
             },
-          },
-        },
-      });
-
-      // Si no se encuentran productos
-      if (!products || products.length === 0) {
-        return res.status(404).json({
-          ok: false,
-          error: { message: "No se encontraron productos" },
         });
-      }
 
-      // Procesar datos para la respuesta
-      const data = {
-        name: products[0].name,
-        price: products[0].price,
-        category: products[0].category.name,
-        iphoneModel: iphoneModelName,
-        images: products.map((e) => {
-          return { image: `${urlImageCompressed}/${e.image}.webp`, id: e.id };
-        }),
-      };
+        // Si no se encuentran productos
+        if (!products || products.length === 0) {
+            return res.status(404).json({
+                ok: false,
+                error: { message: "No se encontraron productos" },
+            });
+        }
 
-      res.json({
-        ok: true,
-        message: "Productos encontrados",
-        data: data,
-      });
+        // Procesar datos para la respuesta
+        const data = {
+            name: products[0].name,
+            price: products[0].price,
+            category: products[0].category.name,
+            iphoneModel: iphoneModels.join(", "), // Concatenar modelos para la respuesta
+            images: products.map((e) => {
+                return { image: `${urlImageCompressed}/${e.image}.webp`, id: e.id };
+            }),
+        };
+
+        res.json({
+            ok: true,
+            message: "Productos encontrados",
+            data: data,
+        });
     } catch (error) {
-      // Manejo de errores
-      console.error(error.message);
-      res.status(500).json({
-        ok: false,
-        error: {
-          message: "Error interno del servidor",
-          details: error.message,
-        },
-      });
+        // Manejo de errores
+        console.error(error.message);
+        res.status(500).json({
+            ok: false,
+            error: {
+                message: "Error interno del servidor",
+                details: error.message,
+            },
+        });
     }
-  },
+},
+
 
   getAll: async (req, res) => {
     try {
