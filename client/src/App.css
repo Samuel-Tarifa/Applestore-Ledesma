@@ -76,6 +76,12 @@ body {
   margin-top: 1rem;
 }
 
+.blur-out {
+  filter: blur(16px);
+  transition: filter 0.5s linear;
+}
+
+
 .placeholder-skeleton {
   border-radius: 1rem;
   background-image: linear-gradient(

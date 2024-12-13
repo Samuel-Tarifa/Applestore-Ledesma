@@ -1,37 +1,27 @@
 import { useProducts } from "../../hooks/useProducts";
 import ProductCard from "./ProductCard";
-import { useInView } from "react-intersection-observer";
 
 const ProductsList = () => {
-  const {
-    products,
-    isLoading,
-    isError,
-    fetchNextPage,
-    isFetchingNextPage,
-    hasNextPage,
-  } = useProducts();
+  const { products, isLoading, isError } = useProducts();
 
-
-  const numPlaceholders=window.innerWidth < 455 ? 2
-  : window.innerWidth < 660 ? 4
-  : window.innerWidth < 1000 ? 6
-  : 8
+  const numPlaceholders =
+    window.innerWidth < 455
+      ? 2
+      : window.innerWidth < 660
+      ? 4
+      : window.innerWidth < 1000
+      ? 6
+      : 8;
   const placeholders = Array.from({ length: numPlaceholders }, (_, i) => i);
-
-  const {ref:observerRef} = useInView({
-    onChange: (inView) => {
-      if (inView && hasNextPage) {
-        fetchNextPage();
-      }
-    },
-  });
 
   return (
     <section className="flex flex-col items-center w-full gap-8">
       <div className="grid product-list gap-4 w-full max-w-6xl place-items-center">
         {isError && !isLoading && (
           <h3>Hubo un error al cargar los productos</h3>
+        )}
+        {products.length === 0 && !isError && !isLoading && (
+          <h3>No se encontraron productos</h3>
         )}
         {isLoading &&
           !isError &&
@@ -51,20 +41,16 @@ const ProductsList = () => {
           !isError &&
           products.map((product) => (
             <ProductCard
-              key={product.id}
+              key={product.images[0].id}
               id={product.id}
               name={product.name}
-              image={product.image}
+              imageList={product.images}
               price={product.price}
+              product={product}
             />
           ))}
-        {!isLoading && !isFetchingNextPage && !isError && hasNextPage && (
-          <div ref={observerRef}></div>
-        )}
       </div>
-      {isFetchingNextPage&&
-      <div className="loader"></div>
-      }
+      {isLoading && <div className="loader"></div>}
     </section>
   );
 };

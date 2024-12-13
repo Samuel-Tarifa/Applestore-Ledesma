@@ -22,7 +22,7 @@ const SelectTypeMenuBar = () => {
 
   return (
     <ul className="flex max-w-96 px-1 justify-between rounded-lg border border-menuBorder h-12">
-      {types.map((type) => (
+      {types?.map((type) => (
         <li
           key={type.id}
           className={`p-1 px-4 rounded my-1 flex items-center ${

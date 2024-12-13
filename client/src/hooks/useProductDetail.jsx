@@ -1,16 +1,27 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { getProductDetail } from "../services/getProductDetail";
 
-export function useProductDetail(id) {
-  const [product, setProduct] = useState([]);
+export function useProductDetail(productId) {
+  const location = useLocation();
+  const productFromState = location.state?.product || null;
+
+  const [product, setProduct] = useState(productFromState);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(!productFromState);
 
   useEffect(() => {
-    getProductDetail(id).then((result) => {
-      !result.ok ? setError(result.error.message) : setError(null);
-      setProduct(result.data);
-    });
-  }, [id]);
+    if (!productFromState && productId) {
+      getProductDetail(productId).then((result) => {
+        if (!result.ok) {
+          setError(result.error.message);
+        } else {
+          setProduct(result.data);
+          setLoading(false);
+        }
+      });
+    }
+  }, [productFromState, productId]);
 
-  return { product, error };
+  return { product, error, loading };
 }

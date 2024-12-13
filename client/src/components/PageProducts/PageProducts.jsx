@@ -1,6 +1,6 @@
 import ProductsList from "./ProductsList";
 import PageProductsHeader from "./PageProductsHeader";
-import ProductDetail from './ProductDetail'
+import ProductDetail from './ProductDetail.jsx'
 import { FiltersProvider } from "../../context/filterProducts";
 import { Routes, Route } from "react-router-dom";
 

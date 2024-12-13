@@ -7,6 +7,6 @@ const Role = {
 
 Object.freeze(Role);
 
-const TOKEN_DURATION = "2d";
+const TOKEN_DURATION = "7d";
 
 export { Role, SALT, TOKEN_DURATION };

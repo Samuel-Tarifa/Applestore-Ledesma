@@ -6,9 +6,16 @@ export function useCategory() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    const cachedCategory = JSON.parse(localStorage.getItem("category"));
+    if (cachedCategory) {
+      setCategory(cachedCategory);
+      setError(null);
+      return;
+    }
     getCategory().then((result) => {
       !result.success ? setError(result.error) : setError(null);
       setCategory(result.data);
+      localStorage.setItem("category", JSON.stringify(result.data));
     });
   }, []);
   return { category, error };
