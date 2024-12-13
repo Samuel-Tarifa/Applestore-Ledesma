@@ -18,8 +18,10 @@ const ProductDetail = () => {
   const numberToMessage = import.meta.env.VITE_NUMBER_WPP;
   const url = "https://applestore-ledesma.vercel.app/products";
 
+  const id=encodeURIComponent(product.id)
+
   const wppMessage = product
-    ? `Hola! me interesa el ${product.name} que vi en la web de applestore-ledesma: ${url}/${product.id}`
+    ? `Hola! me interesa el ${product.name} que vi en la web de applestore-ledesma: ${url}/${id}`
     : "";
 
   return error ? (
