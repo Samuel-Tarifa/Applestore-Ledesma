@@ -10,7 +10,7 @@ const ProductCard = ({ id, imageList, name, price, product }) => {
       setTimeout(() => {
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % imageList.length);
       }, 200);
-    }, 800);
+    }, 3000);
     return () => clearInterval(interval);
   }, [imageList.length]);
 
